@@ -1,0 +1,148 @@
+openapi: 3.0.3
+
+info:
+  title: Weather DApp API
+  description: |
+    A Web3 weather API that generates weather readings and stores each one
+    immutably on the **Algorand LocalNet** blockchain.
+
+    Every call to `/weather/{city}` encodes the reading as **MessagePack**
+    bytes, writes them to an Algorand payment transaction's `note` field,
+    waits for on-chain confirmation, and returns the **Transaction ID** as
+    a tamper-proof receipt alongside the weather data.
+  version: 2.0.0
+  license:
+    name: MIT
+
+servers:
+  - url: http://localhost:3000
+    description: Local development server
+
+tags:
+  - name: Weather
+    description: Weather data endpoints with Algorand blockchain storage
+  - name: Health
+    description: Service health
+
+paths:
+  /weather/{city}:
+    get:
+      tags: [Weather]
+      summary: Get weather data for a city
+      description: |
+        Generates a simulated weather reading for the specified city,
+        persists it on-chain via Algorand LocalNet, and returns the
+        weather data together with the Algorand Transaction ID.
+      operationId: getWeatherByCity
+      parameters:
+        - name: city
+          in: path
+          required: true
+          description: Name of the city to fetch weather for.
+          schema:
+            type: string
+            example: London
+      responses:
+        '200':
+          description: Weather data fetched and successfully stored on-chain.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WeatherApiResponse'
+              example:
+                data:
+                  city: London
+                  temperature: 14.3
+                  humidity: 72
+                  windSpeed: 18.5
+                  rain: true
+                txId: TXID7EXAMPLEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                explorerUrl: http://localhost:3900/transaction/TXID7EXAMPLE
+        '400':
+          description: City name is missing or empty.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server error or Algorand node unreachable.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /health:
+    get:
+      tags: [Health]
+      summary: Health check
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Service is running.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+                  timestamp:
+                    type: string
+                    format: date-time
+
+components:
+  schemas:
+    WeatherData:
+      type: object
+      required: [city, temperature, humidity, windSpeed, rain]
+      properties:
+        city:
+          type: string
+          description: The queried city name.
+          example: London
+        temperature:
+          type: number
+          format: float
+          description: Temperature in degrees Celsius.
+          example: 14.3
+        humidity:
+          type: integer
+          description: Relative humidity percentage (0–100).
+          example: 72
+        windSpeed:
+          type: number
+          format: float
+          description: Wind speed in km/h.
+          example: 18.5
+        rain:
+          type: boolean
+          description: Whether it is currently raining.
+          example: true
+
+    WeatherApiResponse:
+      type: object
+      required: [data, txId, explorerUrl]
+      properties:
+        data:
+          $ref: '#/components/schemas/WeatherData'
+        txId:
+          type: string
+          description: |
+            Algorand Transaction ID. The weather reading is stored as
+            MessagePack bytes in this transaction's `note` field.
+          example: TXID7EXAMPLEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        explorerUrl:
+          type: string
+          format: uri
+          description: Direct link to the Lora block explorer for this transaction.
+          example: http://localhost:3900/transaction/TXID7EXAMPLE
+
+    ErrorResponse:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+          description: Human-readable error message.
+          example: A city name is required.
