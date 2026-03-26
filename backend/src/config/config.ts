@@ -19,7 +19,6 @@ function requireEnv(key: string): string {
   return value;
 }
 
-// ── Algorand node connection ──────────────────────────────────────────────────
 
 const ALGOD_TOKEN = requireEnv('ALGOD_TOKEN');
 const ALGOD_SERVER = requireEnv('ALGOD_SERVER');
