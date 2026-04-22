@@ -40,7 +40,7 @@ export async function getWeather(req: Request, res: Response): Promise<void> {
     res.status(500).json({
       error:
         'Could not store weather data on Algorand. ' +
-        'Please ensure AlgoKit LocalNet is running and the signer account is funded.',
+        'Make sure AlgoKit LocalNet is running',
     });
   }
 }

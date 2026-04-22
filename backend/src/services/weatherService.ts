@@ -37,7 +37,7 @@ async function fetchJson<T>(url: string): Promise<T> {
 }
 
 /**
- * looks up a real city, fetches live weather for that location,
+ * looks up real city, fetches live weather for that location,
  * stores the reading on Algorand LocalNet, and returns the same
  * API shape already used by the frontend.
  */

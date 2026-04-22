@@ -8,12 +8,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
-// ── Middleware ────────────────────────────────────────────────────────────────
+//middleware
 
 app.use(cors({ origin: 'http://localhost:5173' })); // Vite dev server
 app.use(express.json());
 
-// ── Routes ────────────────────────────────────────────────────────────────────
+//routes
 
 app.use('/weather', weatherRoutes);
 
@@ -21,7 +21,7 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// ── Start ─────────────────────────────────────────────────────────────────────
+//start
 
 app.listen(PORT, () => {
   console.log(`\n🌤  Weather DApp API running on http://localhost:${PORT}`);
