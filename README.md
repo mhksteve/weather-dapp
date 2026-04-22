@@ -1,7 +1,7 @@
 # Weather DApp — Algorand Web3 Assignment
 
-A Web3 Decentralized Application that fetches weather data and stores every
-reading permanently on the **Algorand LocalNet** blockchain (via AlgoKit).
+A Web3 Decentralized Application that fetches weather data and stores each weather
+reading on Algorand LocalNet as confirmed on-chain transaction data.
 Built with Node.js / Express / TypeScript on the backend and React / Vite /
 TypeScript on the frontend.
 
@@ -11,20 +11,29 @@ TypeScript on the frontend.
 
 ```
 weather-dapp/
-├── backend/           Node.js + Express + TypeScript
+├── backend/                              Node.js + Express + TypeScript
 │   ├── src/
-│   │   ├── config/config.ts          Algorand client + account (from .env)
-│   │   ├── helpers/helper.ts         msgpack encode + on-chain storage
-│   │   ├── services/weatherService.ts Generate data + call helper
-│   │   ├── controllers/              HTTP layer
-│   │   ├── routes/                   Express routes
-│   │   └── types/global.d.ts         Shared domain types
-│   └── .env                          ← secrets (gitignored)
-└── frontend/          React + Vite + TypeScript
-    └── src/
-        ├── App.tsx                   UI: search, weather card, proof card
-        ├── App.css                   Dark blockchain-themed styles
-        └── types/api.ts              API response types
+│   │   ├── config/config.ts           Algorand client + account (from .env)
+│   │   ├── helpers/helper.ts                msgpack encode + on-chain storage
+│   │   ├── services/weatherService.ts        Fetch live weather + call helper
+│   │   ├── controllers/weatherController.ts     HTTP request handling + validation
+│   │   ├── routes/weatherRoutes.ts         Express routes
+│   │   ├── types/global.d.ts              Shared domain types
+│   │   └── index.ts                     Backend entry point
+│   ├── .env                             Secrets (gitignored)
+│   └── eslint.config.js                 ESLint config
+└── frontend/                            React + Vite + TypeScript
+    ├── src/
+    │   ├── components/
+    │   │   ├── ProofCard.tsx            Blockchain proof UI
+    │   │   ├── SearchForm.tsx           City input + submit
+    │   │   ├── StatusCard.tsx           Loading + error states
+    │   │   └── WeatherCard.tsx          Weather result display
+    │   ├── hooks/useWeather.ts            Fetch lifecycle + state management
+    │   ├── types/api.ts                   API response types
+    │   ├── App.tsx                      Main UI composition
+    │   └── App.css                      Dark blockchain-themed styles
+    └── eslint.config.js                 ESLint config
 ```
 
 ---
@@ -88,11 +97,11 @@ UI at: `http://localhost:5173`
 ## Code Quality
 
 ```bash
-# Lint
+# Lint on both /backend or /frontend
 npm run lint          # report issues
 npm run lint:fix      # auto-fix
 
-# Format
+# Format on both /backend or /frontend
 npm run format        # Prettier
 ```
 
@@ -106,7 +115,7 @@ npm run format        # Prettier
 | GET | `/health` | Health check |
 
 ### Example response
-
+http://localhost:3000/weather/:city
 ```json
 {
   "data": {
@@ -117,6 +126,12 @@ npm run format        # Prettier
     "rain": true
   },
   "txId": "TXID7EXAMPLEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-  "explorerUrl": "http://localhost:3900/transaction/TXID7EXAMPLE..."
+  "explorerUrl": "https://lora.algokit.io/localnet/transaction/..."
 }
 ```
+http://localhost:3000/health
+```json
+{
+  "status": "ok",
+  "timestamp": "2026-04-22T11:59:36.949Z"
+}
