@@ -3,7 +3,7 @@ import type { WeatherApiResponse } from '../types/api';
 
 const API_BASE = 'http://localhost:3000';
 
-/** All the state and behaviour the UI needs for a weather lookup. */
+/** the state and behaviour for weather lookup. */
 export interface UseWeatherReturn {
   result: WeatherApiResponse | null;
   loading: boolean;
@@ -12,14 +12,6 @@ export interface UseWeatherReturn {
   reset: () => void;
 }
 
-/**
- * Encapsulates the fetch lifecycle for the weather endpoint.
- *
- * Separating this into a hook means:
- *  - App.tsx stays a pure layout/composition component.
- *  - The fetch logic is independently testable.
- *  - State transitions (idle → loading → success/error) are in one place.
- */
 export function useWeather(): UseWeatherReturn {
   const [result, setResult] = useState<WeatherApiResponse | null>(null);
   const [loading, setLoading] = useState(false);

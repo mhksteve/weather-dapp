@@ -1,6 +1,5 @@
 /**
- * Mirrors the WeatherData interface from the backend.
- * Kept in sync manually — in a monorepo you could share this directly.
+ * mirrors the WeatherData interface from the backend.
  */
 export interface WeatherData {
   city: string;

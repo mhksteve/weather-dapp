@@ -1,28 +1,79 @@
 import { WeatherData, WeatherApiResponse } from '../types/global';
 import { storeWeatherData } from '../helpers/helper';
 
-// The Lora block explorer URL (AlgoKit LocalNet default port)
+const GEOCODING_BASE_URL = 'https://geocoding-api.open-meteo.com/v1/search';
+const WEATHER_BASE_URL = 'https://api.open-meteo.com/v1/forecast';
 const EXPLORER_BASE_URL = 'https://lora.algokit.io/localnet';
 
+interface GeocodingResult {
+  name: string;
+  latitude: number;
+  longitude: number;
+  country?: string;
+  admin1?: string;
+}
+
+interface GeocodingResponse {
+  results?: GeocodingResult[];
+}
+
+interface CurrentWeatherPayload {
+  current?: {
+    temperature_2m: number;
+    relative_humidity_2m: number;
+    wind_speed_10m: number;
+    rain: number;
+  };
+}
+
+async function fetchJson<T>(url: string): Promise<T> {
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`UPSTREAM_REQUEST_FAILED:${response.status}`);
+  }
+
+  return (await response.json()) as T;
+}
+
 /**
- * Generates a simulated weather reading for the given city,
- * persists it on the Algorand LocalNet blockchain, and returns
- * a combined response containing both the data and the on-chain receipt.
- *
- * @param city - The city name provided by the API caller.
- * @returns A WeatherApiResponse with the reading and its Algorand txId.
+ * looks up a real city, fetches live weather for that location,
+ * stores the reading on Algorand LocalNet, and returns the same
+ * API shape already used by the frontend.
  */
 export async function getWeatherData(city: string): Promise<WeatherApiResponse> {
-  // Generate a realistic-looking weather snapshot
+  const geocodingUrl =
+    `${GEOCODING_BASE_URL}?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+
+  const geocodingData = await fetchJson<GeocodingResponse>(geocodingUrl);
+  const location = geocodingData.results?.[0];
+
+  if (!location) {
+    throw new Error('CITY_NOT_FOUND');
+  }
+
+  const weatherUrl =
+    `${WEATHER_BASE_URL}` +
+    `?latitude=${location.latitude}` +
+    `&longitude=${location.longitude}` +
+    `&current=temperature_2m,relative_humidity_2m,wind_speed_10m,rain` +
+    `&wind_speed_unit=kmh`;
+
+  const weatherApiData = await fetchJson<CurrentWeatherPayload>(weatherUrl);
+  const current = weatherApiData.current;
+
+  if (!current) {
+    throw new Error('WEATHER_DATA_UNAVAILABLE');
+  }
+
   const weatherData: WeatherData = {
-    city,
-    temperature: parseFloat((Math.random() * 35 + 2).toFixed(1)),   // 2–37 °C
-    humidity: Math.floor(Math.random() * 60 + 30),                    // 30–90 %
-    windSpeed: parseFloat((Math.random() * 60).toFixed(1)),           // 0–60 km/h
-    rain: Math.random() > 0.6,
+    city: location.name,
+    temperature: Number(current.temperature_2m.toFixed(1)),
+    humidity: Math.round(current.relative_humidity_2m),
+    windSpeed: Number(current.wind_speed_10m.toFixed(1)),
+    rain: current.rain > 0,
   };
 
-  // Persist the reading on-chain and retrieve the proof
   const txId = await storeWeatherData(weatherData);
 
   return {

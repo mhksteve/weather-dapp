@@ -4,8 +4,9 @@ import { getWeatherData } from '../services/weatherService';
 /**
  * GET /weather/:city
  *
- * Validates the city param, triggers the blockchain-backed weather lookup,
- * and returns the full response including the Algorand transaction ID.
+ * validates the city param, fetches live weather for a real location,
+ * stores the weather reading on Algorand LocalNet, and returns the
+ * full response
  */
 export async function getWeather(req: Request, res: Response): Promise<void> {
   const { city } = req.params;
@@ -16,15 +17,30 @@ export async function getWeather(req: Request, res: Response): Promise<void> {
   }
 
   try {
-    const result = await getWeatherData(city.trim()); //trims spaces
+    const result = await getWeatherData(city.trim());
     res.status(200).json(result);
   } catch (error) {
-    // Log the full error server-side; return a safe message to the client
+    const message = error instanceof Error ? error.message : '';
+
+    if (message === 'CITY_NOT_FOUND') {
+      res.status(404).json({
+        error: `No matching city was found for "${city.trim()}".`,
+      });
+      return;
+    }
+
+    if (message === 'WEATHER_DATA_UNAVAILABLE' || message.startsWith('UPSTREAM_REQUEST_FAILED:')) {
+      res.status(502).json({
+        error: 'Could not retrieve live weather data from the weather provider.',
+      });
+      return;
+    }
+
     console.error('[WeatherController] Failed to process request:', error);
     res.status(500).json({
       error:
-        'Could not fetch weather data or communicate with the Algorand node. ' +
-        'Please ensure AlgoKit LocalNet is running.',
+        'Could not store weather data on Algorand. ' +
+        'Please ensure AlgoKit LocalNet is running and the signer account is funded.',
     });
   }
 }
