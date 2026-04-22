@@ -6,7 +6,7 @@ interface SearchFormProps {
 }
 
 /**
- * Controlled search form.
+ * Controlled search form
  */
 export function SearchForm({ onSearch, disabled }: SearchFormProps) {
   const [city, setCity] = useState('');

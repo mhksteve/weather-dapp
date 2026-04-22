@@ -10,7 +10,7 @@ export interface WeatherData {
 }
 
 /**
- * The full response shape returned by GET /weather/:city.
+ * full response shape returned by GET /weather/:city.
  */
 export interface WeatherApiResponse {
   data: WeatherData;

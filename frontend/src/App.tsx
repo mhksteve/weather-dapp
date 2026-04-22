@@ -13,7 +13,7 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* ── Header ─────────────────────────────────────────── */}
+      {/* header*/}
       <header className="hero">
         <div className="algo-badge">⬡ ALGORAND LOCALNET</div>
         <h1>
@@ -25,7 +25,7 @@ export default function App() {
         </p>
       </header>
 
-      {/* ── Main content ───────────────────────────────────── */}
+      {/* main content*/}
       <main>
         <SearchForm onSearch={fetchWeather} disabled={loading} />
 

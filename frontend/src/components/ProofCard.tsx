@@ -4,7 +4,7 @@ interface ProofCardProps {
 }
 
 /**
- * Renders the blockchain receipt section.
+ * renders the blockchain receipt section
  */
 export function ProofCard({ txId, explorerUrl }: ProofCardProps) {
   return (
@@ -42,7 +42,7 @@ export function ProofCard({ txId, explorerUrl }: ProofCardProps) {
   );
 }
 
-// ── Internal helper ───────────────────────────────────────────────────────────
+// internal helper
 
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (

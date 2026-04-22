@@ -34,7 +34,7 @@ export function WeatherCard({ data }: WeatherCardProps) {
   );
 }
 
-// ── Internal helper ───────────────────────────────────────────────────────────
+// internal helper
 
 interface StatProps {
   icon: string;
