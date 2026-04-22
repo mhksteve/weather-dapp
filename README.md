@@ -1,12 +1,10 @@
-# Weather DApp — Algorand Web3 Assignment
+# Weather DApp — Algorand Web3 Project
 
 A Web3 Decentralized Application that fetches weather data and stores each weather
 reading on Algorand LocalNet as confirmed on-chain transaction data.
 Built with Node.js / Express / TypeScript on the backend and React / Vite /
 TypeScript on the frontend.
-
 ---
-
 ## Architecture
 
 ```
@@ -62,13 +60,13 @@ weather-dapp/
 algokit localnet start
 ```
 
-Local Algorand node at `http://localhost:4001`
+Local Algorand API at `http://localhost:4001`
 Lora block explorer at `http://localhost:3900`
 
 ### 2. Get a funded account mnemonic
 
-Open the KMD API at `http://localhost:4002` (or use `algokit explore`),
-export one of the pre-funded LocalNet accounts, and copy its 25-word mnemonic.
+Open the `algokit explore`, export one of the pre-funded LocalNet
+accounts, and copy its 25-word mnemonic.
 
 ### 3. Configure the backend
 
