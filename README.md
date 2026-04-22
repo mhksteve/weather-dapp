@@ -14,27 +14,27 @@ TypeScript on the frontend.
 weather-dapp/
 ├── backend/                              Node.js + Express + TypeScript
 │   ├── src/
-│   │   ├── config/config.ts           Algorand client + account (from .env)
-│   │   ├── helpers/helper.ts                msgpack encode + on-chain storage
-│   │   ├── services/weatherService.ts        Fetch live weather + call helper
-│   │   ├── controllers/weatherController.ts     HTTP request handling + validation
-│   │   ├── routes/weatherRoutes.ts         Express routes
-│   │   ├── types/global.d.ts              Shared domain types
-│   │   └── index.ts                     Backend entry point
+│   │   ├── config/config.ts 
+│   │   ├── helpers/helper.ts
+│   │   ├── services/weatherService.ts
+│   │   ├── controllers/weatherController.ts
+│   │   ├── routes/weatherRoutes.ts
+│   │   ├── types/global.d.ts
+│   │   └── index.ts
 │   ├── .env                             Secrets (gitignored)
-│   └── eslint.config.js                 ESLint config
+│   └── eslint.config.js
 └── frontend/                            React + Vite + TypeScript
     ├── src/
     │   ├── components/
-    │   │   ├── ProofCard.tsx            Blockchain proof UI
-    │   │   ├── SearchForm.tsx           City input + submit
-    │   │   ├── StatusCard.tsx           Loading + error states
-    │   │   └── WeatherCard.tsx          Weather result display
-    │   ├── hooks/useWeather.ts            Fetch lifecycle + state management
-    │   ├── types/api.ts                   API response types
-    │   ├── App.tsx                      Main UI composition
-    │   └── App.css                      Dark blockchain-themed styles
-    └── eslint.config.js                 ESLint config
+    │   │   ├── ProofCard.tsx
+    │   │   ├── SearchForm.tsx
+    │   │   ├── StatusCard.tsx
+    │   │   └── WeatherCard.tsx
+    │   ├── hooks/useWeather.ts
+    │   ├── types/api.ts
+    │   ├── App.tsx
+    │   └── App.css
+    └── eslint.config.js
 ```
 ---
 ## Prerequisites
