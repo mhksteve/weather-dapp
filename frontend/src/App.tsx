@@ -20,8 +20,7 @@ export default function App() {
           Weather <span className="accent">on Chain</span>
         </h1>
         <p className="tagline">
-          Every reading encoded with MessagePack and stored immutably on the
-          Algorand blockchain.
+          Every reading encoded with MessagePack and stored immutably on the Algorand blockchain.
         </p>
       </header>
 

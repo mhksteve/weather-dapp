@@ -8,8 +8,7 @@ interface WeatherCardProps {
  * weather card with conditions
  */
 export function WeatherCard({ data }: WeatherCardProps) {
-  const tempClass =
-    data.temperature >= 25 ? 'hot' : data.temperature <= 8 ? 'cold' : '';
+  const tempClass = data.temperature >= 25 ? 'hot' : data.temperature <= 8 ? 'cold' : '';
 
   return (
     <section className="card weather-card">
@@ -22,13 +21,9 @@ export function WeatherCard({ data }: WeatherCardProps) {
       </div>
 
       <div className="weather-stats">
-        <Stat icon="💧" value={`${data.humidity}%`}        label="Humidity" />
-        <Stat icon="🌬" value={`${data.windSpeed} km/h`}   label="Wind" />
-        <Stat
-          icon={data.rain ? '🌧' : '☀️'}
-          value={data.rain ? 'Yes' : 'No'}
-          label="Rain"
-        />
+        <Stat icon="💧" value={`${data.humidity}%`} label="Humidity" />
+        <Stat icon="🌬" value={`${data.windSpeed} km/h`} label="Wind" />
+        <Stat icon={data.rain ? '🌧' : '☀️'} value={data.rain ? 'Yes' : 'No'} label="Rain" />
       </div>
     </section>
   );
@@ -45,7 +40,9 @@ interface StatProps {
 function Stat({ icon, value, label }: StatProps) {
   return (
     <div className="stat">
-      <span className="stat-icon" aria-hidden="true">{icon}</span>
+      <span className="stat-icon" aria-hidden="true">
+        {icon}
+      </span>
       <span className="stat-value">{value}</span>
       <span className="stat-label">{label}</span>
     </div>

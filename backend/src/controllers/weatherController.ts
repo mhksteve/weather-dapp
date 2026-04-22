@@ -38,9 +38,7 @@ export async function getWeather(req: Request, res: Response): Promise<void> {
 
     console.error('[WeatherController] Failed to process request:', error);
     res.status(500).json({
-      error:
-        'Could not store weather data on Algorand. ' +
-        'Make sure AlgoKit LocalNet is running',
+      error: 'Could not store weather data on Algorand. ' + 'Make sure AlgoKit LocalNet is running',
     });
   }
 }

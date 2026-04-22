@@ -2,40 +2,40 @@
 
 :root {
   /* Palette */
-  --bg:           #070c18;
-  --surface:      #0d1526;
-  --surface-2:    #111e35;
-  --border:       #1a2d4a;
-  --border-glow:  #00d4aa40;
+  --bg: #070c18;
+  --surface: #0d1526;
+  --surface-2: #111e35;
+  --border: #1a2d4a;
+  --border-glow: #00d4aa40;
 
   /* Brand */
-  --accent:       #00d4aa;
-  --accent-dim:   #00d4aa18;
-  --accent-soft:  #00d4aa55;
+  --accent: #00d4aa;
+  --accent-dim: #00d4aa18;
+  --accent-soft: #00d4aa55;
 
   /* Temperature colours */
-  --hot:          #f97316;
-  --cold:         #60a5fa;
+  --hot: #f97316;
+  --cold: #60a5fa;
 
   /* Text */
-  --text:         #dde6f0;
-  --muted:        #5a7090;
-  --faint:        #2a3f5a;
+  --text: #dde6f0;
+  --muted: #5a7090;
+  --faint: #2a3f5a;
 
   /* Feedback */
-  --danger:       #f87171;
-  --danger-bg:    #f8717115;
+  --danger: #f87171;
+  --danger-bg: #f8717115;
 
   /* Typography */
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-mono: 'DM Mono', 'Fira Code', monospace;
 
   /* Spacing scale */
-  --space-xs:  0.35rem;
-  --space-sm:  0.6rem;
-  --space-md:  1rem;
-  --space-lg:  1.5rem;
-  --space-xl:  2rem;
+  --space-xs: 0.35rem;
+  --space-sm: 0.6rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
   --space-2xl: 3rem;
 
   /* Radii */
@@ -140,7 +140,9 @@ body {
   font-size: 1rem;
   padding: 0.85rem 1.15rem;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .search-form input:focus {
@@ -168,7 +170,10 @@ body {
   font-weight: 700;
   letter-spacing: 0.01em;
   padding: 0.85rem 1.75rem;
-  transition: opacity 0.15s, transform 0.1s, box-shadow 0.15s;
+  transition:
+    opacity 0.15s,
+    transform 0.1s,
+    box-shadow 0.15s;
   white-space: nowrap;
 }
 
@@ -305,8 +310,12 @@ body {
   transition: color 0.3s;
 }
 
-.big-temp.hot  { color: var(--hot); }
-.big-temp.cold { color: var(--cold); }
+.big-temp.hot {
+  color: var(--hot);
+}
+.big-temp.cold {
+  color: var(--cold);
+}
 
 .temp-unit {
   font-size: 2rem;
@@ -399,7 +408,9 @@ body {
   text-decoration: none;
   margin-bottom: var(--space-lg);
   align-self: flex-start;
-  transition: opacity 0.15s, box-shadow 0.15s;
+  transition:
+    opacity 0.15s,
+    box-shadow 0.15s;
 }
 
 .explorer-link:hover {

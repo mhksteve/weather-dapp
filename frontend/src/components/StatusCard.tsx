@@ -20,8 +20,8 @@ export function StatusCard(props: StatusCardProps) {
         <div>
           <strong>Broadcasting to Algorand LocalNet…</strong>
           <p>
-            Signing the transaction, submitting to the node, and waiting for
-            block confirmation. This usually takes 3–6 seconds.
+            Signing the transaction, submitting to the node, and waiting for block confirmation.
+            This usually takes 3–6 seconds.
           </p>
         </div>
       </div>

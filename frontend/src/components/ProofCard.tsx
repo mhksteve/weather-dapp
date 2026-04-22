@@ -17,26 +17,24 @@ export function ProofCard({ txId, explorerUrl }: ProofCardProps) {
         {txId}
       </code>
 
-      <a
-        href={explorerUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="explorer-link"
-      >
+      <a href={explorerUrl} target="_blank" rel="noopener noreferrer" className="explorer-link">
         Inspect on Lora Explorer
-        <span className="link-arrow" aria-hidden="true"> →</span>
+        <span className="link-arrow" aria-hidden="true">
+          {' '}
+          →
+        </span>
       </a>
 
       <div className="proof-detail">
-        <DetailRow label="Network"  value="Algorand LocalNet"   />
+        <DetailRow label="Network" value="Algorand LocalNet" />
         <DetailRow label="Encoding" value="MessagePack (msgpack)" />
-        <DetailRow label="TX field" value="note (binary)"       />
+        <DetailRow label="TX field" value="note (binary)" />
       </div>
 
       <p className="proof-note">
-        The weather reading is encoded as MessagePack bytes and stored in
-        this transaction&apos;s <code>note</code> field. It is permanently
-        immutable — no one can alter it after confirmation.
+        The weather reading is encoded as MessagePack bytes and stored in this transaction&apos;s{' '}
+        <code>note</code> field. It is permanently immutable — no one can alter it after
+        confirmation.
       </p>
     </section>
   );

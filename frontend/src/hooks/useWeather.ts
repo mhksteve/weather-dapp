@@ -26,15 +26,12 @@ export function useWeather(): UseWeatherReturn {
     setResult(null);
 
     try {
-      const response = await fetch(
-        `${API_BASE}/weather/${encodeURIComponent(trimmed)}`
-      );
+      const response = await fetch(`${API_BASE}/weather/${encodeURIComponent(trimmed)}`);
 
       if (!response.ok) {
         const body = await response.json().catch(() => ({}));
         throw new Error(
-          (body as { error?: string }).error ??
-            `Server responded with status ${response.status}`
+          (body as { error?: string }).error ?? `Server responded with status ${response.status}`
         );
       }
 
@@ -42,9 +39,7 @@ export function useWeather(): UseWeatherReturn {
       setResult(data);
     } catch (err) {
       const message =
-        err instanceof Error
-          ? err.message
-          : 'Network error — is the backend running?';
+        err instanceof Error ? err.message : 'Network error — is the backend running?';
       setError(message);
     } finally {
       setLoading(false);

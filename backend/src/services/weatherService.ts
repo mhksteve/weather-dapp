@@ -42,8 +42,7 @@ async function fetchJson<T>(url: string): Promise<T> {
  * API shape already used by the frontend.
  */
 export async function getWeatherData(city: string): Promise<WeatherApiResponse> {
-  const geocodingUrl =
-    `${GEOCODING_BASE_URL}?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
+  const geocodingUrl = `${GEOCODING_BASE_URL}?name=${encodeURIComponent(city)}&count=1&language=en&format=json`;
 
   const geocodingData = await fetchJson<GeocodingResponse>(geocodingUrl);
   const location = geocodingData.results?.[0];
