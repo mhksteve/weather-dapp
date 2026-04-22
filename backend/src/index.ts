@@ -9,12 +9,10 @@ const app = express();
 const PORT = process.env.PORT ?? 3000;
 
 //middleware
-
 app.use(cors({ origin: 'http://localhost:5173' })); // Vite dev server
 app.use(express.json());
 
 //routes
-
 app.use('/weather', weatherRoutes);
 
 app.get('/health', (_req, res) => {
@@ -25,8 +23,9 @@ app.get('/health', (_req, res) => {
 
 app.listen(PORT, () => {
   console.log(`\n🌤  Weather DApp API running on http://localhost:${PORT}`);
-  console.log(`   Algorand LocalNet: http://localhost:4001`);
-  console.log(`   Lora Explorer:     http://localhost:3900\n`);
+  console.log(`   Algorand algod API: http://localhost:4001`);
+  console.log(`   Algorand indexer API: http://localhost:8980`);
+  console.log(`   Lora Explorer:     http://lora.algokit.io\n`);
 });
 
 export default app;

@@ -35,20 +35,26 @@ weather-dapp/
     │   └── App.css                      Dark blockchain-themed styles
     └── eslint.config.js                 ESLint config
 ```
-
 ---
-
 ## Prerequisites
 
-| Tool | Version |
-|------|---------|
-| Node.js | ≥ 18 |
-| AlgoKit CLI | latest (`pip install algokit`) |
-| npm | ≥ 9 |
-
+| Tool           | Version                        |
+|----------------|--------------------------------|
+| Node.js        | ≥ 18                           |
+| npm            | ≥ 9                            |
+| AlgoKit CLI    | latest (`pip install algokit`) |
+| Docker Desktop | -                              |
 ---
-
 ## Quick Start
+- Start Docker Desktop
+- Run `algokit localnet start`
+- Get a funded LocalNet account mnemonic
+- Copy .env.example to .env
+- Paste the mnemonic into ACCOUNT_MNEMONIC
+- Run backend
+- Run frontend
+
+## Detailed Setup
 
 ### 1. Algorand LocalNet
 
@@ -56,8 +62,7 @@ weather-dapp/
 algokit localnet start
 ```
 
-Local Algorand node at `http://localhost:4001` 
-
+Local Algorand node at `http://localhost:4001`
 Lora block explorer at `http://localhost:3900`
 
 ### 2. Get a funded account mnemonic
