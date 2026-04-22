@@ -51,10 +51,10 @@ weather-dapp/
 - Run `algokit localnet start`
 - Get account address `algokit account list`
 - Get 25-words mnemonic `algokit goal account export -a <ACCOUNT_ADDRESS>`
-- Copy .env.example to .env
-- Paste the mnemonic into ACCOUNT_MNEMONIC
-- Run backend
-- Run frontend
+- Copy `.env.example` in `/backend` as `.env`
+- Paste the mnemonic into `ACCOUNT_MNEMONIC`
+- Run `/backend`
+- Run `/frontend`
 
 ## Detailed Setup
 
