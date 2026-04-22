@@ -1,11 +1,12 @@
 # Weather DApp — Algorand Web3 Project
 
----
+
+
 A Web3 Decentralized Application that fetches weather data and stores each weather
 reading on Algorand LocalNet as confirmed on-chain transaction data.
 Built with Node.js / Express / TypeScript on the backend and React / Vite /
 TypeScript on the frontend.
----
+
 
 ## Architecture
 
