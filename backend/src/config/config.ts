@@ -1,7 +1,7 @@
 import algosdk from 'algosdk';
 import dotenv from 'dotenv';
 
-// Load environment variables before anything else
+// Load environment
 dotenv.config();
 
 /**
