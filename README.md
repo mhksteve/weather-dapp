@@ -46,7 +46,8 @@ weather-dapp/
 ## Quick Start
 - Start Docker Desktop
 - Run `algokit localnet start`
-- Get a funded LocalNet account mnemonic
+- Get account address `algokit account list`
+- Get 25-words mnemonic `algokit goal account export -a <ACCOUNT_ADDRESS>`
 - Copy .env.example to .env
 - Paste the mnemonic into ACCOUNT_MNEMONIC
 - Run backend
