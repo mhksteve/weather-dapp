@@ -7,8 +7,6 @@ interface SearchFormProps {
 
 /**
  * Controlled search form.
- * Owns the input value locally; calls `onSearch` only when the form
- * is submitted with a non-empty value.
  */
 export function SearchForm({ onSearch, disabled }: SearchFormProps) {
   const [city, setCity] = useState('');

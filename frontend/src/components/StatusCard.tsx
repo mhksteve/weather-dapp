@@ -11,9 +11,6 @@ type StatusCardProps = LoadingCardProps | ErrorCardProps;
 
 /**
  * Renders a contextual status banner.
- *
- * Accepts a discriminated union so TypeScript enforces that error cards
- * always receive a message, and loading cards never do.
  */
 export function StatusCard(props: StatusCardProps) {
   if (props.kind === 'loading') {

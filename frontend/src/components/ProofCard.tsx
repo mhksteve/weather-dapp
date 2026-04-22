@@ -5,10 +5,6 @@ interface ProofCardProps {
 
 /**
  * Renders the blockchain receipt section.
- *
- * The Transaction ID is displayed in a monospace code block and the
- * explorer link opens the Lora block explorer in a new tab so the user
- * can inspect the raw MessagePack bytes stored in the note field.
  */
 export function ProofCard({ txId, explorerUrl }: ProofCardProps) {
   return (

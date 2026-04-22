@@ -1,9 +1,6 @@
 /**
- * App.tsx — composition root.
- *
- * All data-fetching logic lives in useWeather().
- * All visual sub-sections live in their own component files under /components.
- * This file is intentionally thin: it wires state to UI, nothing more.
+ * all data-fetching logic lives in useWeather().
+ * all visual sub-sections live in their own component files under /components.
  */
 import { useWeather } from './hooks/useWeather';
 import { SearchForm } from './components/SearchForm';

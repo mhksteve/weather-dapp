@@ -5,11 +5,7 @@ interface WeatherCardProps {
 }
 
 /**
- * Displays the weather reading for the queried city.
- * Temperature colour shifts based on value:
- *  ≥ 25°C → orange (hot)
- *  ≤  8°C → blue   (cold)
- *  else   → teal   (default accent)
+ * weather card with conditions
  */
 export function WeatherCard({ data }: WeatherCardProps) {
   const tempClass =
