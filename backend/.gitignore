@@ -2,8 +2,7 @@ node_modules/
 dist/
 
 # Environment variables — NEVER commit secrets
-.env*
-!.env.example
+.env
 
 # OS
 .DS_Store
